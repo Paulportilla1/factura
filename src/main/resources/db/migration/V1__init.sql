@@ -12,12 +12,12 @@ CREATE TABLE IF NOT EXISTS invoice(
     client_id INT NOT NULL,
     FOREIGN KEY (client_id) REFERENCES client(id)
 );
-CREATE TABLE IF NOT EXISTS product(
+CREATE TABLE IF NOT EXISTS product (
     id SERIAL PRIMARY KEY,
-    description VARCHAR(255),
-    brand VARCHAR(255),
-    price INT,
-    stok INTEGER
+    description VARCHAR(1000) NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    stok INT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS detail(
     id SERIAL PRIMARY KEY,

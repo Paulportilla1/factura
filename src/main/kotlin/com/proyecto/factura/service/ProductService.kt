@@ -3,6 +3,10 @@ package com.proyecto.factura.service
 import com.proyecto.factura.model.Product
 import com.proyecto.factura.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Example
+import org.springframework.data.domain.ExampleMatcher
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
@@ -12,13 +16,16 @@ class ProductService {
     @Autowired
     lateinit var productRepository: ProductRepository
 
-    fun list ():List<Product>{
-        return productRepository.findAll()
+    fun list (pageable: Pageable,product: Product):Page<Product>{
+        val matcher = ExampleMatcher.matching()
+            .withIgnoreNullValues()
+            .withMatcher(("field"), ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+        return productRepository.findAll(Example.of(product, matcher), pageable)
     }
 
     fun save(product: Product): Product {
         try{
-            product.stok?.takeIf { it.trim().isNotEmpty() }
+            product.stok?.takeIf { it >= 0}
                 ?: throw Exception("Stock no debe ser menor a cero")
             return productRepository.save(product)
         }
