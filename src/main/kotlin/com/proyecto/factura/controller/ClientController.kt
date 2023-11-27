@@ -1,7 +1,7 @@
-package com.proyectoleslie.factura.controller
+package com.proyecto.factura.controller
 
-import com.proyectoleslie.factura.model.Client
-import com.proyectoleslie.factura.service.ClientService
+import com.proyecto.factura.model.Client
+import com.proyecto.factura.service.ClientService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/client")   //endpoint
 @CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
-class ClientController {
+class  ClientController {
     @Autowired
     lateinit var clientService: ClientService
 

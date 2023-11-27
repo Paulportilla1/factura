@@ -1,9 +1,9 @@
-package com.proyectoleslie.factura.service
+package com.proyecto.factura.service
 
-import com.proyectoleslie.factura.model.Detail
-import com.proyectoleslie.factura.repository.DetailRepository
-import com.proyectoleslie.factura.repository.InvoiceRepository
-import com.proyectoleslie.factura.repository.ProductRepository
+import com.proyecto.factura.model.Detail
+import com.proyecto.factura.repository.DetailRepository
+import com.proyecto.factura.repository.InvoiceRepository
+import com.proyecto.factura.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -22,7 +22,7 @@ class DetailService {
         return detailRepository.findAll()
     }
 
-    fun save(detail: Detail):Detail{
+    fun save(detail: Detail): Detail {
         try {
             // Verification logic for invoice and product existence
             detail.invoiceId?.let { invoiceId ->
@@ -56,7 +56,7 @@ class DetailService {
         }
     }
 
-    fun updateName(detail: Detail): Detail{
+    fun updateName(detail: Detail): Detail {
         try{
             val response = detailRepository.findById(detail.id)
                 ?: throw Exception("ID no existe")

@@ -1,4 +1,4 @@
-package com.proyectoleslie.factura.model
+package com.proyecto.factura.model
 
 import jakarta.persistence.*
 import java.util.*

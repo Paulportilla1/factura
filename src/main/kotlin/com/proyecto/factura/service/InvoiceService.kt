@@ -1,8 +1,8 @@
-package com.proyectoleslie.factura.service
+package com.proyecto.factura.service
 
-import com.proyectoleslie.factura.model.Invoice
-import com.proyectoleslie.factura.repository.ClientRepository
-import com.proyectoleslie.factura.repository.InvoiceRepository
+import com.proyecto.factura.model.Invoice
+import com.proyecto.factura.repository.ClientRepository
+import com.proyecto.factura.repository.InvoiceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -19,7 +19,7 @@ class InvoiceService {
         return invoiceRepository.findAll()
     }
 
-    fun save(invoice: Invoice):Invoice{
+    fun save(invoice: Invoice): Invoice {
         try {
             clientRepository.findById(invoice.clientId)
                 ?: throw Exception("Id del cliente no encontrados")
@@ -41,7 +41,7 @@ class InvoiceService {
         }
     }
 
-    fun updateName(invoice: Invoice): Invoice{
+    fun updateName(invoice: Invoice): Invoice {
         try{
             val response = invoiceRepository.findById(invoice.id)
                 ?: throw Exception("ID no existe")

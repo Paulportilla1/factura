@@ -1,52 +1,52 @@
-package com.proyectoleslie.factura.service
+package com.proyecto.factura.service
 
-import com.proyectoleslie.factura.model.Product
-import com.proyectoleslie.factura.repository.ProductRepository
+import com.proyecto.factura.model.Client
+import com.proyecto.factura.repository.ClientRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
 @Service
-class ProductService {
+class ClientService {
     @Autowired
-    lateinit var productRepository: ProductRepository
+    lateinit var clientRepository: ClientRepository
 
-    fun list ():List<Product>{
-        return productRepository.findAll()
+    fun list ():List<Client>{
+        return clientRepository.findAll()
     }
 
-    fun save(product: Product): Product {
+    fun save(client: Client): Client {
         try{
-            product.stok?.takeIf { it.trim().isNotEmpty() }
-                ?: throw Exception("Stock no debe ser menor a cero")
-            return productRepository.save(product)
+            client.fullname?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("Nombres no debe ser vacio")
+            return clientRepository.save(client)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
 
-    fun update(product: Product): Product{
+    fun update(client: Client): Client {
         try {
-            productRepository.findById(product.id)
+            clientRepository.findById(client.id)
                 ?: throw Exception("ID no existe")
 
-            return productRepository.save(product)
+            return clientRepository.save(client)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
 
-    fun updateName(product: Product): Product{
+    fun updateName(client: Client): Client {
         try{
-            val response = productRepository.findById(product.id)
+            val response = clientRepository.findById(client.id)
                 ?: throw Exception("ID no existe")
             response.apply {
-                description=product.description
+                address=client.address
             }
-            return productRepository.save(response)
+            return clientRepository.save(response)
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
@@ -55,18 +55,18 @@ class ProductService {
 
     fun delete (id: Long?):Boolean?{
         try{
-            val response = productRepository.findById(id)
+            val response = clientRepository.findById(id)
 
                 ?: throw Exception("ID no existe")
-            productRepository.deleteById(id!!)
+            clientRepository.deleteById(id!!)
             return true
         }
         catch (ex:Exception){
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun listById (id:Long?):Product?{
-        return productRepository.findById(id)
+    fun listById (id:Long?): Client?{
+        return clientRepository.findById(id)
     }
 
 }
