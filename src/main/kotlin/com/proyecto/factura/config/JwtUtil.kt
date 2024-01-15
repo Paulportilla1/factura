@@ -6,9 +6,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException
 import com.proyecto.factura.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.Date
+import java.util.*
 import java.util.concurrent.TimeUnit
-
 @Component
 class JwtUtil {
     @Autowired
