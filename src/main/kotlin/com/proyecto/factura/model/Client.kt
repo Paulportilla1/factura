@@ -2,6 +2,7 @@ package com.proyecto.factura.model
 
 import jakarta.persistence.*
 
+
 @Entity
 @Table(name = "client")
 class Client {

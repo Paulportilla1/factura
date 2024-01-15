@@ -1,7 +1,3 @@
-cloudinary:
-  cloud-name: piensa
-  api-key: 697157638332511
-  api-secret: fQhHramPoTeRhHpomyaz71lPipo
 server:
   port: 8081
   error:
@@ -20,7 +16,7 @@ spring:
     schemas: public
 
   datasource:
-    url: jdbc:postgresql://bubble.db.elephantsql.com /kktsynct?socketTimeout=3
-    username: kktsynct
-    password: 9M4gOvzD_2nVnNz1iTcnsLj-Ym3Vq_Ep
+    url: jdbc:postgresql://heffalump.db.elephantsql.com/ebgibrns?socketTimeout=3
+    username: ebgibrns
+    password: mXHgvz4rPflac7XYs1KZ-xMsIN2MP-ou
     driverClassName: org.postgresql.Driver

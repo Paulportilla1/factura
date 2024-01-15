@@ -1,7 +1,8 @@
 package com.proyecto.factura.controller
 
 
-import ch.qos.logback.core.net.server.Client
+
+import com.proyecto.factura.model.Client
 import com.proyecto.factura.service.ClientService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable

@@ -1,6 +1,5 @@
 package com.proyecto.factura.service
 
-
 import com.proyecto.factura.model.Client
 import com.proyecto.factura.repository.ClientRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,12 +11,14 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 
+
+
 @Service
 class ClientService {
     @Autowired
     lateinit var clientRepository: ClientRepository
 
-    fun list (pageable: Pageable,client: Client):Page<Client>{
+    fun list (pageable: Pageable,client: Client ):Page<Client>{
         val matcher = ExampleMatcher.matching()
             .withIgnoreNullValues()
             .withMatcher(("field"), ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
@@ -47,12 +48,12 @@ class ClientService {
         }
     }
 
-    fun updateName(client: Client): ch.qos.logback.core.net.server.Client {
+    fun updateName(client: Client): Client {
         try{
             val response = clientRepository.findById(client.id)
                 ?: throw Exception("ID no existe")
             response.apply {
-                address=client.address
+                email=client.email
             }
             return clientRepository.save(response)
         }
@@ -73,7 +74,7 @@ class ClientService {
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
-    fun listById (id:Long?): ch.qos.logback.core.net.server.Client? {
+    fun listById (id:Long?): Client? {
         return clientRepository.findById(id)
     }
 
