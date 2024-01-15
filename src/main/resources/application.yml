@@ -1,0 +1,26 @@
+cloudinary:
+  cloud-name: piensa
+  api-key: 697157638332511
+  api-secret: fQhHramPoTeRhHpomyaz71lPipo
+server:
+  port: 8081
+  error:
+    include-message: always
+#Configuracion de spring
+spring:
+  #Configuracion de migracion
+  flyway:
+    enabled: true
+    baselineVersion: 1
+    locations:
+      classpath: db/migration
+    sqlMigrationSuffixes: .sql
+    baselineOnMigrate: true
+    sqlMigrationPrefix: V
+    schemas: public
+
+  datasource:
+    url: jdbc:postgresql://bubble.db.elephantsql.com /kktsynct?socketTimeout=3
+    username: kktsynct
+    password: 9M4gOvzD_2nVnNz1iTcnsLj-Ym3Vq_Ep
+    driverClassName: org.postgresql.Driver
