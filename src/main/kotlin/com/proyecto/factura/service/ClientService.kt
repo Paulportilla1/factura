@@ -21,13 +21,13 @@ class ClientService {
     fun list (pageable: Pageable,client: Client ):Page<Client>{
         val matcher = ExampleMatcher.matching()
             .withIgnoreNullValues()
-            .withMatcher(("field"), ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+            .withMatcher(("fullname"), ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
         return clientRepository.findAll(Example.of(client, matcher), pageable)
     }
 
     fun save(client: Client): Client {
         try{
-            client.fullname?.takeIf { it.trim().isNotEmpty() }
+            client.address?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("Nombres no debe ser vacio")
             return clientRepository.save(client)
         }

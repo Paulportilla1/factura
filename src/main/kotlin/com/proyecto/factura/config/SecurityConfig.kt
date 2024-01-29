@@ -32,7 +32,7 @@ class SecurityConfig {
                 authRequest
                     .requestMatchers("/auth/**").permitAll()
 
-                    .requestMatchers(HttpMethod.GET,"/product/**").hasAnyRole("admin")
+                    .requestMatchers(HttpMethod.GET,"/product/**","/detail/**").hasAnyRole("admin")
                     .requestMatchers(HttpMethod.GET,"/client/**").hasAnyRole("vendedor")
                     .anyRequest().denyAll()
             }
