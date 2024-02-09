@@ -10,44 +10,44 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.springframework.boot.test.context.SpringBootTest
+
+
 @SpringBootTest
 class ClientServiceTest {
 
     @InjectMocks
-    lateinit var clientService: ClientService //clae que se va a probar
+    lateinit var clientService: ClientService
 
-    @Mock   //objeto simulado
+    @Mock
     lateinit var clientRepository: ClientRepository
 
     val clientMock = Client().apply {
-        id=1
-        nui="0301707030"
-        fullname="Juan"
-        address= "Ceunca"
+        id = 2
+        nui = "0301707030"
+        fullname = "Juan"
+        address = "Cuenca" // Corrected typo in address
     }
 
     @Test
-    fun saveClientCorrect(){
+    fun saveClientCorrect() {
         Mockito.`when`(clientRepository.save(Mockito.any(Client::class.java))).thenReturn(clientMock)
         val response = clientService.save(clientMock)
-        Assertions.assertEquals(response.id, clientMock.id)
+        Assertions.assertEquals(clientMock.id, response.id)
     }
 
-
     @Test
-    fun saveClientWhenFullnameIsBlank(){
-
+    fun saveClientWhenFullnameIsBlank() {
         Assertions.assertThrows(Exception::class.java) {
-            clientMock.apply { fullname=" "}
+            clientMock.apply { fullname = " " }
             Mockito.`when`(clientRepository.save(Mockito.any(Client::class.java))).thenReturn(clientMock)
             clientService.save(clientMock)
         }
-
     }
+
     @Test
-    fun saveClientWhenAddressIsBlank(){
+    fun saveClientWhenAddressIsBlank() {
         Assertions.assertThrows(Exception::class.java) {
-            clientMock.apply { address=" "}
+            clientMock.apply { address = " " }
             Mockito.`when`(clientRepository.save(Mockito.any(Client::class.java))).thenReturn(clientMock)
             clientService.save(clientMock)
         }

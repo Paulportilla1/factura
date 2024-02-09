@@ -5,6 +5,7 @@ import com.proyecto.factura.model.Client
 import com.proyecto.factura.model.Invoice
 import com.proyecto.factura.repository.ClientRepository
 import com.proyecto.factura.repository.InvoiceRepository
+import com.proyecto.factura.service.InvoiceService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.InjectMocks
@@ -12,8 +13,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.springframework.boot.test.context.SpringBootTest
 import java.io.File
-
-
 
 @SpringBootTest
 class InvoiceServiceTest {
@@ -37,6 +36,7 @@ class InvoiceServiceTest {
         address= "Ceunca"
     }
 
+
     @Test
     fun saveInvoiceWhenIsCorrect(){
         Mockito.`when`(clientRepository.findById(invoiceMock.clientId)).thenReturn(clientMock)
@@ -49,7 +49,4 @@ class InvoiceServiceTest {
         val invoiceMock = Gson().fromJson(jsonString, Invoice::class.java)
     }
 
-
-
 }
-
